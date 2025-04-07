@@ -6,13 +6,40 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Men&#xfa;"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="adUsuarios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+                <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de usuarios"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adUsuariosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="adArticulos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de art&#xed;culos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adArticulosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="adConsulta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de solicitudes"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adConsultaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="adActualizarSoli">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar solicitud"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adActualizarSoliActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -20,7 +47,7 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -81,7 +108,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="lblBienvenido" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="314" max="32767" attributes="0"/>
+                      <EmptySpace pref="275" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
@@ -120,7 +147,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Bienvenido: "/>
+                <Property name="text" type="java.lang.String" value="MERKS &amp; SPENDS"/>
               </Properties>
             </Component>
           </SubComponents>

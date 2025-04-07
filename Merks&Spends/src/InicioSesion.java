@@ -8,21 +8,31 @@ public class InicioSesion extends javax.swing.JFrame {
     private UserCRUD crud;
     public String usuarioNombre;
     public static InicioSesion Usuario = null;
+    private String nombre;
     
-    public InicioSesion(String usuarioNombre) {
-        this.usuarioNombre = usuarioNombre;
+    
+    
+    public InicioSesion(String nombre) {
+        this.nombre = nombre;
     }
     
+    public void setNombre(String nombre) {
+        this.usuarioNombre = nombre;
+    }
     
-    public String getNombre(){
+    public String getNombre() {
         return usuarioNombre;
     }
+    
+    
     
     public InicioSesion() {
         initComponents();
         verificarConexion();
         crud = new UserCRUD();
     }
+    
+    
 
      private void verificarConexion(){
         Connection conex = ConexionMySQL.conectar();
@@ -178,9 +188,10 @@ public class InicioSesion extends javax.swing.JFrame {
                 if (nombre == null) {
                 nombre = "Invitado"; // O algún valor por defecto
                 }
-                Usuario = new InicioSesion(nombre);
-                Administracion_Usuarios AD = new Administracion_Usuarios(Usuario);
+                this.usuarioNombre = nombre;
+                Administracion_Usuarios AD = new Administracion_Usuarios();
                 AD.setVisible(true);
+                this.setVisible(false);
         }else{
                 JOptionPane.showMessageDialog(this,"Credenciales incorrectas","Erro al iniciar sesión",JOptionPane.ERROR_MESSAGE);
             }

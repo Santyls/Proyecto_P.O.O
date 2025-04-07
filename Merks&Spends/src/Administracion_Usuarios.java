@@ -8,19 +8,20 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
     private UserCRUD crud;
     private articulosCRUD arcrud;
     private InicioSesion IS;
+    private String nombreUsuario;
 
-     public Administracion_Usuarios(InicioSesion IS) {
+     public Administracion_Usuarios() {
         initComponents();
-        this.crud = new UserCRUD();
-        this.arcrud = new articulosCRUD();
-        this.IS = IS;
+        crud = new UserCRUD();
+        arcrud = new articulosCRUD();
+//        this.nombreUsuario = nombreUsuario;
         llenarTabla();
-        setNombre();
+//        setNombre();
     }
     
-    private void setNombre(){
-        lblBienvenido.setText("Bienvenid@: "+IS.getNombre());
-    }
+//    private void setNombre(){
+//        lblBienvenido.setText("Bienvenid@: "+nombreUsuario);
+//    }
     
     private void obtenerUsuario(){
         txtNombre.setText("");
@@ -79,9 +80,12 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        adUsuarios = new javax.swing.JMenuItem();
+        adArticulos = new javax.swing.JMenuItem();
+        adConsulta = new javax.swing.JMenuItem();
+        adActualizarSoli = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,7 +98,7 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
 
         lblBienvenido.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblBienvenido.setForeground(new java.awt.Color(255, 255, 255));
-        lblBienvenido.setText("Bienvenido: ");
+        lblBienvenido.setText("MERKS & SPENDS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,7 +107,7 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(lblBienvenido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(34, 34, 34))
         );
@@ -324,10 +328,39 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 630, 210));
 
-        jMenu1.setText("File");
+        jMenu1.setText("Menú");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        adUsuarios.setText("Administración de usuarios");
+        adUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adUsuariosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(adUsuarios);
+
+        adArticulos.setText("Administración de artículos");
+        adArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adArticulosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(adArticulos);
+
+        adConsulta.setText("Administración de solicitudes");
+        adConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adConsultaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(adConsulta);
+
+        adActualizarSoli.setText("Actualizar solicitud");
+        adActualizarSoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adActualizarSoliActionPerformed(evt);
+            }
+        });
+        jMenu1.add(adActualizarSoli);
 
         jMenuBar1.add(jMenu1);
 
@@ -492,6 +525,26 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
         limpiarcampos();
     }//GEN-LAST:event_btnTodosActionPerformed
 
+    private void adArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adArticulosActionPerformed
+        AdministracionArticulos AA = new AdministracionArticulos();
+        AA.setVisible(true);
+    }//GEN-LAST:event_adArticulosActionPerformed
+
+    private void adUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adUsuariosActionPerformed
+        Administracion_Usuarios AU = new  Administracion_Usuarios();
+        AU.setVisible(true);
+    }//GEN-LAST:event_adUsuariosActionPerformed
+
+    private void adConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adConsultaActionPerformed
+        Consulta_aSolicitud AC = new  Consulta_aSolicitud();
+        AC.setVisible(true);
+    }//GEN-LAST:event_adConsultaActionPerformed
+
+    private void adActualizarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adActualizarSoliActionPerformed
+        Actualizar_aSolicitud AS = new  Actualizar_aSolicitud();
+        AS.setVisible(true);
+    }//GEN-LAST:event_adActualizarSoliActionPerformed
+
     private void llenarTabla(){
         ResultSet todos = crud.obtenerTodos();
         DefaultTableModel modeloT = (DefaultTableModel) jTable1.getModel();
@@ -535,14 +588,17 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-    public void run() {
-        InicioSesion prueba = new InicioSesion("Admin de prueba");
-        new Administracion_Usuarios(prueba).setVisible(true);
-    }
-});
+            public void run() {
+                new Administracion_Usuarios().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem adActualizarSoli;
+    private javax.swing.JMenuItem adArticulos;
+    private javax.swing.JMenuItem adConsulta;
+    private javax.swing.JMenuItem adUsuarios;
     private javax.swing.JButton btnAlta;
     private javax.swing.JButton btnBaja;
     private javax.swing.JButton btnBuscarId;
@@ -559,7 +615,6 @@ public class Administracion_Usuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

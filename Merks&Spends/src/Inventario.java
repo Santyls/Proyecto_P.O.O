@@ -60,6 +60,7 @@ public class Inventario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -69,35 +70,45 @@ public class Inventario extends javax.swing.JFrame {
         btnInventarioPDF = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        usSolicitud = new javax.swing.JMenuItem();
+        asConsulta = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 204));
+        jPanel2.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Inventario");
+
+        lblBienvenido.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(255, 255, 255));
+        lblBienvenido.setText("MERKS & SPENDS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(328, 328, 328)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(lblBienvenido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblBienvenido))
                 .addContainerGap())
         );
 
@@ -175,11 +186,23 @@ public class Inventario extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 690, 60));
 
-        jMenu2.setText("File");
-        jMenuBar1.add(jMenu2);
+        jMenu2.setText("Menú");
 
-        jMenu3.setText("Edit");
-        jMenuBar1.add(jMenu3);
+        jMenuItem1.setText("Inventario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        usSolicitud.setText("Agregar solicitud");
+        jMenu2.add(usSolicitud);
+
+        asConsulta.setText("Consulta solicitud");
+        jMenu2.add(asConsulta);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -273,6 +296,10 @@ public class Inventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInventarioPDFActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -309,19 +336,22 @@ public class Inventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem asConsulta;
     private javax.swing.JButton btnBuscarNombre;
     private javax.swing.JButton btnInventarioPDF;
     private javax.swing.JButton btnTodos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JMenuItem usSolicitud;
     // End of variables declaration//GEN-END:variables
 }
