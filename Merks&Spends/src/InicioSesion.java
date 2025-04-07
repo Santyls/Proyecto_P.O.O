@@ -56,8 +56,10 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JPasswordField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxDepartamento = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -100,8 +102,6 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         txtCorreo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
-        txtCorreo.setText("Ingrese su usuario");
         txtCorreo.setBorder(null);
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,28 +110,62 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel3.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 140, 20));
 
-        jPanel4.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel4.setBackground(new java.awt.Color(0, 0, 102));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
+
+        jLabel6.setFont(new java.awt.Font("Castellar", 2, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel6.setText("Merks & Spends");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(276, 276, 276))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18))
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 198, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 210, 400));
 
-        txtContrasena.setForeground(new java.awt.Color(204, 204, 204));
-        txtContrasena.setText("Ingrese succ");
+        txtContrasena.setToolTipText("");
         txtContrasena.setBorder(null);
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContrasenaActionPerformed(evt);
+            }
+        });
         jPanel3.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 140, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almacén", "Compras", "Producción", "Logística", "Recursos humanos" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 140, -1));
+        cbxDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almacén", "Compras", "Producción", "Logística", "Recursos humanos" }));
+        jPanel3.add(cbxDepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel5.setText("Contraseña");
@@ -174,24 +208,29 @@ public class InicioSesion extends javax.swing.JFrame {
         //1. obtener el valor del txt
         String correo = txtCorreo.getText();
         String contra = txtContrasena.getText();
+        int depa = cbxDepartamento.getSelectedIndex();
         //2.Validar txt vacio
         if(correo.isEmpty() ||contra.isEmpty()){
             JOptionPane.showMessageDialog(this,"Todos los campos son obligatorios","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        ResultSet rs = crud.inicioSesion(correo, contra);
+        ResultSet rs = crud.inicioSesion(correo, contra, depa+1);
         
         try{
             if(rs.next()){
-                String nombre = rs.getString("nombre");
-                if (nombre == null) {
-                nombre = "Invitado"; // O algún valor por defecto
-                }
+                int privilegio = rs.getInt("privilegio");
+                if (privilegio == 1) {
                 this.usuarioNombre = nombre;
                 Administracion_Usuarios AD = new Administracion_Usuarios();
                 AD.setVisible(true);
                 this.setVisible(false);
+                }else{
+                   Inventario IN = new Inventario();
+                   IN.setVisible(true);
+                   this.setVisible(false); 
+                }
+     
         }else{
                 JOptionPane.showMessageDialog(this,"Credenciales incorrectas","Erro al iniciar sesión",JOptionPane.ERROR_MESSAGE);
             }
@@ -200,6 +239,10 @@ public class InicioSesion extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtIniciarSesionActionPerformed
+
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,16 +280,18 @@ public class InicioSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbxDepartamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

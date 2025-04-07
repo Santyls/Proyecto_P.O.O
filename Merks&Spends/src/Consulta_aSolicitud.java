@@ -32,6 +32,12 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblBienvenido = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        adUsuarios = new javax.swing.JMenuItem();
+        adArticulos = new javax.swing.JMenuItem();
+        adConsulta = new javax.swing.JMenuItem();
+        adActualizarSoli = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -87,9 +93,9 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(14, 14, 14)
                 .addComponent(lblBienvenido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28))
         );
@@ -105,6 +111,44 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 50));
 
+        jMenu3.setText("Menú");
+
+        adUsuarios.setText("Administración de usuarios");
+        adUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adUsuariosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(adUsuarios);
+
+        adArticulos.setText("Administración de artículos");
+        adArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adArticulosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(adArticulos);
+
+        adConsulta.setText("Administración de solicitudes");
+        adConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adConsultaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(adConsulta);
+
+        adActualizarSoli.setText("Actualizar solicitud");
+        adActualizarSoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adActualizarSoliActionPerformed(evt);
+            }
+        });
+        jMenu3.add(adActualizarSoli);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +159,7 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -159,6 +203,26 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarTodosArtiActionPerformed
 
+    private void adUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adUsuariosActionPerformed
+        Administracion_Usuarios AU = new  Administracion_Usuarios();
+        AU.setVisible(true);
+    }//GEN-LAST:event_adUsuariosActionPerformed
+
+    private void adArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adArticulosActionPerformed
+        AdministracionArticulos AA = new AdministracionArticulos();
+        AA.setVisible(true);
+    }//GEN-LAST:event_adArticulosActionPerformed
+
+    private void adConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adConsultaActionPerformed
+        Consulta_aSolicitud AC = new  Consulta_aSolicitud();
+        AC.setVisible(true);
+    }//GEN-LAST:event_adConsultaActionPerformed
+
+    private void adActualizarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adActualizarSoliActionPerformed
+        Actualizar_aSolicitud AS = new  Actualizar_aSolicitud();
+        AS.setVisible(true);
+    }//GEN-LAST:event_adActualizarSoliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,10 +259,16 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem adActualizarSoli;
+    private javax.swing.JMenuItem adArticulos;
+    private javax.swing.JMenuItem adConsulta;
+    private javax.swing.JMenuItem adUsuarios;
     private javax.swing.JButton btnBuscarTodosArti;
     private javax.swing.JButton btnEliminarArticulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

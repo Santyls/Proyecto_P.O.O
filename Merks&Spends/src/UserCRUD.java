@@ -12,18 +12,19 @@ public class UserCRUD {
         conexion = ConexionMySQL.conectar();
     }
     
-    public ResultSet inicioSesion(String correo, String contra){
+    public ResultSet inicioSesion(String correo, String contra, int depa){
         
-        String sqlBuscar = "SELECT id, nombre FROM usuario WHERE correo = ? AND contrasena = ?;";
+        String sqlBuscar = "SELECT id, nombre, privilegio  FROM usuario WHERE correo = ? AND contrasena = ? AND id_departamento = ?;";
         
         try {
             PreparedStatement ps = conexion.prepareStatement(sqlBuscar);
             ps.setString(1,correo);
             ps.setString(2,contra);
+            ps.setInt(3,depa);
             return ps.executeQuery();
         }
         catch(SQLException e){
-            System.out.println("Error al buscar por id "+ e.getMessage());
+            System.out.println("Error al iniciar sesión "+ e.getMessage());
             return null;
         }
     }//fin del insert

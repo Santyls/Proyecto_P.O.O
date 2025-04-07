@@ -39,6 +39,34 @@ public class articulosCRUD {
         }
         
     }
+    //-----------por fechas
+    public ResultSet reporteFechas(){
+        String slqTodos = "SELECT * FROM vista_pedidos_por_fecha;";
+        
+        try{
+            PreparedStatement ps = conexion.prepareStatement(slqTodos);
+            return ps.executeQuery();
+        }
+        catch(SQLException s){
+            System.out.println("Error al consultar fechas"+s.getMessage());
+            return null;
+        }
+        
+    }
+    //-----------por departamento
+    public ResultSet reporteDepartamentos(){
+        String slqTodos = "SELECT * FROM vista_pedidos_por_departamento;";
+        
+        try{
+            PreparedStatement ps = conexion.prepareStatement(slqTodos);
+            return ps.executeQuery();
+        }
+        catch(SQLException s){
+            System.out.println("Error al consultar departamentos"+s.getMessage());
+            return null;
+        }
+        
+    }
     //SEELECT Nombre----------------------------------------------------------------------------------------------------
     public ResultSet bucarporNombre (String nombre){
         String sqlBuscar = "SELECT id_articulo, a.nombre, c.nombre, a.descripcion, a.existencia FROM articulos a INNER JOIN categoria c ON a.id_categoria = c.id_categoria WHERE a.nombre = ?";

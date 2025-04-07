@@ -33,6 +33,11 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblBienvenido = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        usInventario = new javax.swing.JMenuItem();
+        usAgregarSoli = new javax.swing.JMenuItem();
+        isConsulta = new javax.swing.JMenuItem();
 
         jLabel7.setText("Buscar por Id de la solicitud del articulo");
 
@@ -107,6 +112,36 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 50));
 
+        jMenu2.setText("Menú");
+
+        usInventario.setText("Inventario");
+        usInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usInventarioActionPerformed(evt);
+            }
+        });
+        jMenu2.add(usInventario);
+
+        usAgregarSoli.setText("Agregar solicitud");
+        usAgregarSoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usAgregarSoliActionPerformed(evt);
+            }
+        });
+        jMenu2.add(usAgregarSoli);
+
+        isConsulta.setText("Consulta solicitud");
+        isConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isConsultaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(isConsulta);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,6 +192,21 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarIdArticuloActionPerformed
 
+    private void usInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usInventarioActionPerformed
+        Inventario IN = new  Inventario();
+        IN.setVisible(true);
+    }//GEN-LAST:event_usInventarioActionPerformed
+
+    private void usAgregarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usAgregarSoliActionPerformed
+        Agregar_uSolicitud AS = new  Agregar_uSolicitud();
+        AS.setVisible(true);
+    }//GEN-LAST:event_usAgregarSoliActionPerformed
+
+    private void isConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isConsultaActionPerformed
+        Consulta_uSolicitud CS = new  Consulta_uSolicitud();
+        CS.setVisible(true);
+    }//GEN-LAST:event_isConsultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,14 +244,19 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarIdArticulo;
+    private javax.swing.JMenuItem isConsulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JTable tableArticulo;
     private javax.swing.JTextField txtBuscarIdArticulo;
+    private javax.swing.JMenuItem usAgregarSoli;
+    private javax.swing.JMenuItem usInventario;
     // End of variables declaration//GEN-END:variables
 }

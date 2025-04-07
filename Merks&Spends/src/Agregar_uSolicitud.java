@@ -45,8 +45,10 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNombreUsua = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        usInventario = new javax.swing.JMenuItem();
+        usAgregarSoli = new javax.swing.JMenuItem();
+        isConsulta = new javax.swing.JMenuItem();
 
         jLabel1.setText("Estado de la solicitud:");
 
@@ -206,10 +208,32 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 640, 230));
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu2.setText("Menú");
 
-        jMenu2.setText("Edit");
+        usInventario.setText("Inventario");
+        usInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usInventarioActionPerformed(evt);
+            }
+        });
+        jMenu2.add(usInventario);
+
+        usAgregarSoli.setText("Agregar solicitud");
+        usAgregarSoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usAgregarSoliActionPerformed(evt);
+            }
+        });
+        jMenu2.add(usAgregarSoli);
+
+        isConsulta.setText("Consulta solicitud");
+        isConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isConsultaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(isConsulta);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -273,6 +297,21 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreUsuaActionPerformed
 
+    private void usInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usInventarioActionPerformed
+        Inventario IN = new  Inventario();
+        IN.setVisible(true);
+    }//GEN-LAST:event_usInventarioActionPerformed
+
+    private void usAgregarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usAgregarSoliActionPerformed
+        Agregar_uSolicitud AS = new  Agregar_uSolicitud();
+        AS.setVisible(true);
+    }//GEN-LAST:event_usAgregarSoliActionPerformed
+
+    private void isConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isConsultaActionPerformed
+        Consulta_uSolicitud CS = new  Consulta_uSolicitud();
+        CS.setVisible(true);
+    }//GEN-LAST:event_isConsultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -312,6 +351,7 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarArti1;
     private javax.swing.JButton btnLimpiarArti1;
     private javax.swing.JComboBox<String> cbEstado;
+    private javax.swing.JMenuItem isConsulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -319,7 +359,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -333,5 +372,7 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtNombreUsua;
+    private javax.swing.JMenuItem usAgregarSoli;
+    private javax.swing.JMenuItem usInventario;
     // End of variables declaration//GEN-END:variables
 }

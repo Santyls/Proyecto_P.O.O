@@ -68,11 +68,13 @@ public class Inventario extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         btnTodos = new javax.swing.JButton();
         btnInventarioPDF = new javax.swing.JButton();
+        btbReporteFecha = new javax.swing.JButton();
+        btnReporteDepa = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        usSolicitud = new javax.swing.JMenuItem();
-        asConsulta = new javax.swing.JMenuItem();
+        usInventario = new javax.swing.JMenuItem();
+        usAgregarSoli = new javax.swing.JMenuItem();
+        isConsulta = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -157,6 +159,20 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
+        btbReporteFecha.setText("Generar reporte por fechas");
+        btbReporteFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbReporteFechaActionPerformed(evt);
+            }
+        });
+
+        btnReporteDepa.setText("Generar reporte por departamentos");
+        btnReporteDepa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteDepaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -169,8 +185,12 @@ public class Inventario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnTodos)
                 .addGap(28, 28, 28)
-                .addComponent(btnInventarioPDF)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btbReporteFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInventarioPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnReporteDepa))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,26 +201,40 @@ public class Inventario extends javax.swing.JFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTodos)
                     .addComponent(btnInventarioPDF))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btbReporteFecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReporteDepa)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 690, 60));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 690, 110));
 
         jMenu2.setText("Menú");
 
-        jMenuItem1.setText("Inventario");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        usInventario.setText("Inventario");
+        usInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                usInventarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(usInventario);
 
-        usSolicitud.setText("Agregar solicitud");
-        jMenu2.add(usSolicitud);
+        usAgregarSoli.setText("Agregar solicitud");
+        usAgregarSoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usAgregarSoliActionPerformed(evt);
+            }
+        });
+        jMenu2.add(usAgregarSoli);
 
-        asConsulta.setText("Consulta solicitud");
-        jMenu2.add(asConsulta);
+        isConsulta.setText("Consulta solicitud");
+        isConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isConsultaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(isConsulta);
 
         jMenuBar1.add(jMenu2);
 
@@ -272,11 +306,11 @@ public class Inventario extends javax.swing.JFrame {
             documento.add(new Paragraph(" "));
 
             PdfPTable tabla = new PdfPTable(5);
-            tabla.addCell("id_articulo");
-            tabla.addCell("nombre");
-            tabla.addCell("c.nombre");
-            tabla.addCell("descripcion");
-            tabla.addCell("existencia");
+            tabla.addCell("ID");
+            tabla.addCell("Nombre");
+            tabla.addCell("Categoria");
+            tabla.addCell("Descripcion");
+            tabla.addCell("Existencia");
             
             ResultSet rs = arcrud.reporteInventario();
             if(rs.next()){
@@ -296,9 +330,94 @@ public class Inventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInventarioPDFActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void usInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usInventarioActionPerformed
+        Inventario IN = new  Inventario();
+        IN.setVisible(true);
+    }//GEN-LAST:event_usInventarioActionPerformed
+
+    private void isConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isConsultaActionPerformed
+        Consulta_uSolicitud CS = new  Consulta_uSolicitud();
+        CS.setVisible(true);
+    }//GEN-LAST:event_isConsultaActionPerformed
+
+    private void usAgregarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usAgregarSoliActionPerformed
+        Agregar_uSolicitud AS = new  Agregar_uSolicitud();
+        AS.setVisible(true);
+    }//GEN-LAST:event_usAgregarSoliActionPerformed
+
+    private void btbReporteFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbReporteFechaActionPerformed
+        Document documento = new Document();
+        
+        try{
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/OneDrive/Escritorio/Reporte_pedidos_fechas.pdf"));
+            documento.open();
+            
+            Paragraph titulo = new Paragraph("PEDIDOS POR FECHAS", FontFactory.getFont("Arial", 20, Font.BOLD));
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            documento.add(titulo);
+            documento.add(new Paragraph(" "));
+
+            PdfPTable tabla = new PdfPTable(2);
+            tabla.addCell("Fecha");
+            tabla.addCell("Número pedidos");
+            
+            ResultSet rs = arcrud.reporteFechas();
+            if(rs.next()){
+                do{
+                    tabla.addCell(rs.getString(1));
+                    tabla.addCell(rs.getString(2));
+                }while(rs.next());
+                documento.add(tabla);
+            }
+            documento.close(); // <- dentro del try
+            JOptionPane.showMessageDialog(this, "Reporte creado");
+        }catch(DocumentException | FileNotFoundException | SQLException e){
+             System.out.println( "Error al generar PDF: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btbReporteFechaActionPerformed
+
+    private void btnReporteDepaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteDepaActionPerformed
+        Document documento = new Document();
+        
+        try{
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/OneDrive/Escritorio/Reporte_departamentos.pdf"));
+            documento.open();
+            
+            Paragraph titulo = new Paragraph("PEDIDOS POR DEPARTAMENTOS", FontFactory.getFont("Arial", 20, Font.BOLD));
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            documento.add(titulo);
+            documento.add(new Paragraph(" "));
+
+            PdfPTable tabla = new PdfPTable(7);
+            tabla.addCell("ID solicitud");
+            tabla.addCell("Usuario");
+            tabla.addCell("Departamento");
+            tabla.addCell("Cantidad");
+            tabla.addCell("Fecha");
+            tabla.addCell("Hora");
+            tabla.addCell("Estado");
+            
+            ResultSet rs = arcrud.reporteDepartamentos();
+            if(rs.next()){
+                do{
+                    tabla.addCell(rs.getString(1));
+                    tabla.addCell(rs.getString(2));
+                    tabla.addCell(rs.getString(3));
+                    tabla.addCell(rs.getString(4));
+                    tabla.addCell(rs.getString(5));
+                    tabla.addCell(rs.getString(6));
+                    tabla.addCell(rs.getString(7));
+                }while(rs.next());
+                documento.add(tabla);
+            }
+            documento.close(); // <- dentro del try
+            JOptionPane.showMessageDialog(this, "Reporte creado");
+        }catch(DocumentException | FileNotFoundException | SQLException e){
+             System.out.println( "Error al generar PDF: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnReporteDepaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,15 +455,16 @@ public class Inventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem asConsulta;
+    private javax.swing.JButton btbReporteFecha;
     private javax.swing.JButton btnBuscarNombre;
     private javax.swing.JButton btnInventarioPDF;
+    private javax.swing.JButton btnReporteDepa;
     private javax.swing.JButton btnTodos;
+    private javax.swing.JMenuItem isConsulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -352,6 +472,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JMenuItem usSolicitud;
+    private javax.swing.JMenuItem usAgregarSoli;
+    private javax.swing.JMenuItem usInventario;
     // End of variables declaration//GEN-END:variables
 }
