@@ -38,6 +38,7 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
         usInventario = new javax.swing.JMenuItem();
         usAgregarSoli = new javax.swing.JMenuItem();
         isConsulta = new javax.swing.JMenuItem();
+        txtCerrar = new javax.swing.JMenuItem();
 
         jLabel7.setText("Buscar por Id de la solicitud del articulo");
 
@@ -66,13 +67,13 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
 
         tableArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id_usuario", "Id_articulo", "Cantidad", "Fecha", "Hora", "Estado"
+                "ID", "Usuario", "Artículo", "Cantidad", "Fecha", "Hora", "Estado"
             }
         ));
         jScrollPane1.setViewportView(tableArticulo);
@@ -138,6 +139,14 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
         });
         jMenu2.add(isConsulta);
 
+        txtCerrar.setText("Cerrar sesión");
+        txtCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCerrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(txtCerrar);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -150,7 +159,9 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -161,7 +172,7 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarIdArticuloActionPerformed
 
     private void btnBuscarIdArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIdArticuloActionPerformed
-        // TODO add your handling code here:
+
         String idtext = txtBuscarIdArticulo.getText();
         //2. validar txt vacio
         if(idtext.isEmpty()){
@@ -177,7 +188,7 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
             modelo.setRowCount(0);
 
             if(rs.next()){
-                modelo.addRow(new Object[]{rs.getInt("id_usuario"),rs.getInt("cantidad"),rs.getDate("fecha_solicitud"),rs.getTime("hora"),rs.getString("estado")});
+                modelo.addRow(new Object[]{rs.getInt("id_solicitud"),rs.getString("Usuario"),rs.getString("Articulo"),rs.getInt("cantidad"),rs.getDate("fecha_solicitud"),rs.getTime("hora"),rs.getString("estado")});
             }
             else {
                 JOptionPane.showMessageDialog(this, "No se encontró ninguna solicitud con ese ID.");
@@ -206,6 +217,19 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
         Consulta_uSolicitud CS = new  Consulta_uSolicitud();
         CS.setVisible(true);
     }//GEN-LAST:event_isConsultaActionPerformed
+
+    private void txtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCerrarActionPerformed
+
+        int respuesta = JOptionPane.showConfirmDialog(this,
+            "¿Deseas cerrar sesión?", "Cerrar Sesión",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            InicioSesion IS = new InicioSesion();
+            IS.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_txtCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,6 +280,7 @@ public class Consulta_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JTable tableArticulo;
     private javax.swing.JTextField txtBuscarIdArticulo;
+    private javax.swing.JMenuItem txtCerrar;
     private javax.swing.JMenuItem usAgregarSoli;
     private javax.swing.JMenuItem usInventario;
     // End of variables declaration//GEN-END:variables

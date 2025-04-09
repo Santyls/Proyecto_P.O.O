@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class articulosCRUD {
     private Connection conexion;
@@ -159,5 +160,45 @@ public class articulosCRUD {
             System.out.println("Error al eliminar la solicitud "+ e.getMessage());
             return false;
         }
+    }
+    
+    
+    
+    //----------------------
+    public DefaultCategoryDataset obtenerDatosReales() throws SQLException {
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    Connection conex = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    
+    try {
+        // 1. Conectar a la BD
+        conex = ConexionMySQL.conectar();
+        System.out.println("Conexión a BD establecida");
+        
+        // 2. Consulta SQL para los 5 productos más vendidos
+        String sql = "SELECT a.nombre AS articulo, SUM(sa.cantidad) AS total_vendido FROM solicitud_articulo sa JOIN articulos a ON sa.id_articulo = a.id_articulo GROUP BY a.nombre ORDER BY total_vendido DESC LIMIT 5;";
+        
+        ps = conex.prepareStatement(sql);
+        rs = ps.executeQuery();
+        System.out.println("Consulta SQL ejecutada");
+        
+        // 3. Procesar resultados
+        while (rs.next()) {
+            String articulo = rs.getString("articulo");
+            int totalVendido = rs.getInt("total_vendido");
+            dataset.addValue(totalVendido, "Ventas", articulo);
+            System.out.println("Dato obtenido: " + articulo + " - " + totalVendido);
+        }
+        
+    } finally {
+        // 4. Cerrar recursos en orden inverso
+        if (rs != null) rs.close();
+        if (ps != null) ps.close();
+        if (conex != null) conex.close();
+        System.out.println("Conexiones cerradas");
+    }
+    
+    return dataset;
     }
 }

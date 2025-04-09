@@ -31,12 +31,14 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         btnActualizarCambio = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableArticulo = new javax.swing.JTable();
+        txtSurtir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         adUsuarios = new javax.swing.JMenuItem();
         adArticulos = new javax.swing.JMenuItem();
         adConsulta = new javax.swing.JMenuItem();
         adActualizarSoli = new javax.swing.JMenuItem();
+        txtCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,7 +108,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
             }
         });
 
-        btnActualizarCambio.setText("Guardar cambio");
+        btnActualizarCambio.setText("Mostrar todo");
         btnActualizarCambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarCambioActionPerformed(evt);
@@ -115,44 +117,57 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
 
         tableArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id_usuario", "Id_articulo", "Cantidad", "Fecha", "Hora", "Estado"
+                "ID", "Nombre", "Artículo", "Cantidad", "Fecha", "Hora", "Estado"
             }
         ));
         jScrollPane1.setViewportView(tableArticulo);
+
+        txtSurtir.setText("Surtir");
+        txtSurtir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSurtirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 4, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113)
-                        .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(btnBuscarEstado)
-                        .addGap(99, 99, 99)
-                        .addComponent(btnEditar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(btnActualizarCambio)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(113, 113, 113)
+                                .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(217, 217, 217)
+                                .addComponent(btnActualizarCambio))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(btnBuscarEstado)
+                                .addGap(99, 99, 99)
+                                .addComponent(btnEditar)
+                                .addGap(47, 47, 47)
+                                .addComponent(txtSurtir)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
+                .addGap(0, 17, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -161,14 +176,17 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBuscarEstado)
-                    .addComponent(btnEditar))
-                .addGap(42, 42, 42)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEditar)
+                        .addComponent(txtSurtir)))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnActualizarCambio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnActualizarCambio)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 580, 320));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 580, 330));
 
         jMenu3.setText("Menú");
 
@@ -204,6 +222,14 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         });
         jMenu3.add(adActualizarSoli);
 
+        txtCerrar.setText("Cerrar sesión");
+        txtCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCerrarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(txtCerrar);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -218,7 +244,9 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,14 +296,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         modelo.setRowCount(0);  
         
         while (rs.next()) {
-            modelo.addRow(new Object[]{
-                rs.getInt("id_usuario"),
-                rs.getInt("id_solicitud"),
-                rs.getInt("cantidad"),
-                rs.getDate("fecha_solicitud"),
-                rs.getTime("hora"),
-                rs.getString("estado"),
-            });
+            modelo.addRow(new Object[]{rs.getInt("id_solicitud"),rs.getString("Usuario"),rs.getString("Articulo"),rs.getInt("cantidad"),rs.getDate("fecha_solicitud"),rs.getTime("hora"),rs.getString("estado")});
         }
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error al buscar las solicitudes por estado.");
@@ -308,6 +329,54 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         AS.setVisible(true);
     }//GEN-LAST:event_adActualizarSoliActionPerformed
 
+    private void txtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCerrarActionPerformed
+
+        int respuesta = JOptionPane.showConfirmDialog(this,
+            "¿Deseas cerrar sesión?", "Cerrar Sesión",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            InicioSesion IS = new InicioSesion();
+            IS.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_txtCerrarActionPerformed
+
+    private void txtSurtirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSurtirActionPerformed
+        int selectedRow = tableArticulo.getSelectedRow();
+
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Por favor, selecciona una solicitud para surtir.");
+        return;
+    }
+
+    try {
+        int id_solicitud = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 0).toString());
+        int id_articulo = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 2).toString());
+        int cantidad_solicitada = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 3).toString());
+        int existencia_actual = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 5).toString());
+
+        if (existencia_actual >= cantidad_solicitada) {
+            int nueva_existencia = existencia_actual - cantidad_solicitada;
+
+            if (crudArticulos.updateExistenciaArticulo(id_articulo, nueva_existencia)) {
+                crudArticulos.updateSolicitudArticulos(id_solicitud, "Disponible para recolección");
+                JOptionPane.showMessageDialog(this, "Artículo surtido correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al actualizar la existencia del artículo.");
+            }
+        } else {
+            crudArticulos.updateSolicitudArticulos(id_solicitud, "Artículo no disponible");
+            JOptionPane.showMessageDialog(this, "No hay suficiente existencia para surtir esta solicitud.");
+        }
+
+        actualizarTabla(); // Recarga la tabla si tienes un método para eso
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al intentar surtir el artículo: " + e.getMessage());
+    }
+    }//GEN-LAST:event_txtSurtirActionPerformed
+
     private void actualizarTabla() {
     ResultSet rs = crudArticulos.obtenerTodosArticulos();
     DefaultTableModel modelo = (DefaultTableModel) tableArticulo.getModel();
@@ -315,14 +384,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
 
     try {
         while (rs.next()) {
-            modelo.addRow(new Object[]{
-                rs.getInt("id_solicitud"),
-                rs.getInt("id_usuario"),
-                rs.getInt("cantidad"),
-                rs.getDate("fecha_solicitud"),
-                rs.getTime("hora"),
-                rs.getString("estado")
-            });
+             modelo.addRow(new Object[]{rs.getInt("id_solicitud"),rs.getString("Usuario"),rs.getString("Articulo"),rs.getInt("cantidad"),rs.getDate("fecha_solicitud"),rs.getTime("hora"),rs.getString("estado")});
         }
     } catch (SQLException e) {
         System.out.println("Error al actualizar la tabla: " + e.getMessage());
@@ -383,5 +445,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JTable tableArticulo;
+    private javax.swing.JMenuItem txtCerrar;
+    private javax.swing.JButton txtSurtir;
     // End of variables declaration//GEN-END:variables
 }

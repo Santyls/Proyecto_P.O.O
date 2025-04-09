@@ -38,6 +38,7 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
         adArticulos = new javax.swing.JMenuItem();
         adConsulta = new javax.swing.JMenuItem();
         adActualizarSoli = new javax.swing.JMenuItem();
+        txtCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,13 +66,13 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
 
         tableArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id_usuario", "Id_articulo", "Cantidad", "Fecha", "Hora", "Estado"
+                "ID", "Nombre", "Artículo", "Cantidad", "Fecha", "Hora", "Estado"
             }
         ));
         jScrollPane1.setViewportView(tableArticulo);
@@ -145,6 +146,14 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
         });
         jMenu3.add(adActualizarSoli);
 
+        txtCerrar.setText("Cerrar sesión");
+        txtCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCerrarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(txtCerrar);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -189,13 +198,13 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
 
     private void btnBuscarTodosArtiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTodosArtiActionPerformed
         // TODO add your handling code here:
-        ResultSet todos= crudArticulos.obtenerTodosArticulos();
-        DefaultTableModel modeloT= (DefaultTableModel) tableArticulo.getModel();
-        modeloT.setNumRows(0);
+        ResultSet rs= crudArticulos.obtenerTodosArticulos();
+        DefaultTableModel modelo= (DefaultTableModel) tableArticulo.getModel();
+        modelo.setNumRows(0);
 
         try{
-            while(todos.next()){
-                modeloT.addRow(new Object[]{todos.getInt("id_solicitud"),todos.getInt("id_usuario"),todos.getInt("cantidad"),todos.getDate("fecha_solicitud"),todos.getTime("hora"),todos.getString("estado")});
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("id_solicitud"),rs.getString("Usuario"),rs.getString("Articulo"),rs.getInt("cantidad"),rs.getDate("fecha_solicitud"),rs.getTime("hora"),rs.getString("estado")});
             }
         }
         catch(SQLException x){
@@ -222,6 +231,19 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
         Actualizar_aSolicitud AS = new  Actualizar_aSolicitud();
         AS.setVisible(true);
     }//GEN-LAST:event_adActualizarSoliActionPerformed
+
+    private void txtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCerrarActionPerformed
+
+        int respuesta = JOptionPane.showConfirmDialog(this,
+            "¿Deseas cerrar sesión?", "Cerrar Sesión",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            InicioSesion IS = new InicioSesion();
+            IS.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_txtCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,5 +296,6 @@ public class Consulta_aSolicitud extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JTable tableArticulo;
+    private javax.swing.JMenuItem txtCerrar;
     // End of variables declaration//GEN-END:variables
 }

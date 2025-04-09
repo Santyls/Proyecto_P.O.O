@@ -17,6 +17,12 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Element;
 
+import java.awt.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 public class Inventario extends javax.swing.JFrame {
 
     private articulosCRUD arcrud;
@@ -70,11 +76,13 @@ public class Inventario extends javax.swing.JFrame {
         btnInventarioPDF = new javax.swing.JButton();
         btbReporteFecha = new javax.swing.JButton();
         btnReporteDepa = new javax.swing.JButton();
+        MostrarBtn = new javax.swing.JButton();
+        GraficaMostrada = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         usInventario = new javax.swing.JMenuItem();
         usAgregarSoli = new javax.swing.JMenuItem();
-        isConsulta = new javax.swing.JMenuItem();
+        txtCerrar = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -131,6 +139,9 @@ public class Inventario extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 700, 210));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btnBuscarNombre.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnBuscarNombre.setText("Buscar por Nombre");
         btnBuscarNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -173,24 +184,35 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
+        MostrarBtn.setText("Mostrar gráfico");
+        MostrarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btnBuscarNombre)
-                .addGap(18, 18, 18)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTodos)
-                .addGap(28, 28, 28)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btbReporteFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInventarioPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnReporteDepa))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnInventarioPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btbReporteFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnReporteDepa))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnBuscarNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTodos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MostrarBtn)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,15 +222,29 @@ public class Inventario extends javax.swing.JFrame {
                     .addComponent(btnBuscarNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTodos)
-                    .addComponent(btnInventarioPDF))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btbReporteFecha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporteDepa)
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(MostrarBtn))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInventarioPDF)
+                    .addComponent(btbReporteFecha)
+                    .addComponent(btnReporteDepa))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 690, 110));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 690, 100));
+
+        javax.swing.GroupLayout GraficaMostradaLayout = new javax.swing.GroupLayout(GraficaMostrada);
+        GraficaMostrada.setLayout(GraficaMostradaLayout);
+        GraficaMostradaLayout.setHorizontalGroup(
+            GraficaMostradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 659, Short.MAX_VALUE)
+        );
+        GraficaMostradaLayout.setVerticalGroup(
+            GraficaMostradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 252, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(GraficaMostrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, -1, -1));
 
         jMenu2.setText("Menú");
 
@@ -228,13 +264,13 @@ public class Inventario extends javax.swing.JFrame {
         });
         jMenu2.add(usAgregarSoli);
 
-        isConsulta.setText("Consulta solicitud");
-        isConsulta.addActionListener(new java.awt.event.ActionListener() {
+        txtCerrar.setText("Cerrar sesión");
+        txtCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isConsultaActionPerformed(evt);
+                txtCerrarActionPerformed(evt);
             }
         });
-        jMenu2.add(isConsulta);
+        jMenu2.add(txtCerrar);
 
         jMenuBar1.add(jMenu2);
 
@@ -248,7 +284,9 @@ public class Inventario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -335,11 +373,6 @@ public class Inventario extends javax.swing.JFrame {
         IN.setVisible(true);
     }//GEN-LAST:event_usInventarioActionPerformed
 
-    private void isConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isConsultaActionPerformed
-        Consulta_uSolicitud CS = new  Consulta_uSolicitud();
-        CS.setVisible(true);
-    }//GEN-LAST:event_isConsultaActionPerformed
-
     private void usAgregarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usAgregarSoliActionPerformed
         Agregar_uSolicitud AS = new  Agregar_uSolicitud();
         AS.setVisible(true);
@@ -419,6 +452,64 @@ public class Inventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnReporteDepaActionPerformed
 
+    private void MostrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarBtnActionPerformed
+        System.out.println("Botón presionado - Conectando a BD...");
+
+        try {
+            // 1. Obtener datos REALES desde MySQL
+            DefaultCategoryDataset dataset = arcrud.obtenerDatosReales();
+
+            // 2. Crear el gráfico con los datos reales
+            JFreeChart chart = ChartFactory.createBarChart(
+                "Artículos más vendidos en MERKS & SPEN",
+                "Artículos",
+                "Cantidad vendida",
+                dataset
+            );
+
+            // 3. Configurar el panel del gráfico
+            ChartPanel chartPanel = new ChartPanel(chart) {
+                @Override
+                public Dimension getPreferredSize() {
+                    return new Dimension(GraficaMostrada.getWidth(), GraficaMostrada.getHeight());
+                }
+            };
+
+            // 4. Mostrar en el panel
+            GraficaMostrada.removeAll();
+            GraficaMostrada.setLayout(new BorderLayout());
+            GraficaMostrada.add(chartPanel, BorderLayout.CENTER);
+            GraficaMostrada.revalidate();
+            GraficaMostrada.repaint();
+
+            System.out.println("Gráfico generado con datos reales!");
+
+        } catch (SQLException e) {
+            System.err.println("Error de BD: " + e.getMessage());
+            JOptionPane.showMessageDialog(this,
+                "Error al conectar con la BD: " + e.getMessage(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            System.err.println("Error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(this,
+                "Error al generar gráfico: " + e.getMessage(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_MostrarBtnActionPerformed
+
+    private void txtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCerrarActionPerformed
+
+        int respuesta = JOptionPane.showConfirmDialog(this,
+            "¿Deseas cerrar sesión?", "Cerrar Sesión",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            InicioSesion IS = new InicioSesion();
+            IS.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_txtCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -455,12 +546,13 @@ public class Inventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel GraficaMostrada;
+    private javax.swing.JButton MostrarBtn;
     private javax.swing.JButton btbReporteFecha;
     private javax.swing.JButton btnBuscarNombre;
     private javax.swing.JButton btnInventarioPDF;
     private javax.swing.JButton btnReporteDepa;
     private javax.swing.JButton btnTodos;
-    private javax.swing.JMenuItem isConsulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -471,6 +563,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JMenuItem txtCerrar;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JMenuItem usAgregarSoli;
     private javax.swing.JMenuItem usInventario;

@@ -62,6 +62,7 @@ public class AdministracionArticulos extends javax.swing.JFrame {
         adArticulos1 = new javax.swing.JMenuItem();
         adConsulta = new javax.swing.JMenuItem();
         adActualizarSoli = new javax.swing.JMenuItem();
+        txtCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -305,6 +306,14 @@ public class AdministracionArticulos extends javax.swing.JFrame {
         });
         jMenu1.add(adActualizarSoli);
 
+        txtCerrar.setText("Cerrar sesión");
+        txtCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCerrarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(txtCerrar);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -477,6 +486,19 @@ public class AdministracionArticulos extends javax.swing.JFrame {
         AS.setVisible(true);
     }//GEN-LAST:event_adActualizarSoliActionPerformed
 
+    private void txtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCerrarActionPerformed
+
+        int respuesta = JOptionPane.showConfirmDialog(this,
+            "¿Deseas cerrar sesión?", "Cerrar Sesión",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            InicioSesion IS = new InicioSesion();
+            IS.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_txtCerrarActionPerformed
+
     
     private void llenarTabla(){
         ResultSet todos = arcrud.obtenerTodos();
@@ -554,6 +576,7 @@ public class AdministracionArticulos extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JTextArea txaDescripcion;
+    private javax.swing.JMenuItem txtCerrar;
     private javax.swing.JTextField txtExistencia;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
