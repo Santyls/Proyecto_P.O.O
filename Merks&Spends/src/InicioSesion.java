@@ -9,6 +9,10 @@ public class InicioSesion extends javax.swing.JFrame {
     public String usuarioNombre;
     public static InicioSesion Usuario = null;
     private String nombre;
+    public static int id_usuario;
+    public static String nombre_usuario;
+    public static int privilegio;
+    public static int id_departamento;
     
     
     
@@ -30,6 +34,8 @@ public class InicioSesion extends javax.swing.JFrame {
         initComponents();
 //        verificarConexion();
         crud = new UserCRUD();
+        
+         
     }
     
     
@@ -216,27 +222,30 @@ public class InicioSesion extends javax.swing.JFrame {
         }
 
         ResultSet rs = crud.inicioSesion(correo, contra, depa+1);
-        
-        try{
-            if(rs.next()){
-                int privilegio = rs.getInt("privilegio");
-                if (privilegio == 1) {
-                this.usuarioNombre = nombre;
-                Administracion_Usuarios AD = new Administracion_Usuarios();
-                AD.setVisible(true);
-                this.setVisible(false);
-                }else{
-                   Inventario IN = new Inventario();
-                   IN.setVisible(true);
-                   this.setVisible(false); 
-                }
-     
-        }else{
-                JOptionPane.showMessageDialog(this,"Credenciales incorrectas","Erro al iniciar sesión",JOptionPane.ERROR_MESSAGE);
-            }
-        }catch(SQLException e){
-            System.out.println("Error al nose : "+e.getMessage());
+
+try {
+    if(rs.next()) {
+        // Guardamos datos del usuario
+        InicioSesion.id_usuario = rs.getInt("id");
+        InicioSesion.nombre_usuario = rs.getString("nombre");
+        InicioSesion.privilegio = rs.getInt("privilegio");
+        //InicioSesion.id_departamento = rs.getInt("id_departamento");
+
+        if (InicioSesion.privilegio == 1) {
+            Administracion_Usuarios AD = new Administracion_Usuarios();
+            AD.setVisible(true);
+            this.setVisible(false);
+        } else {
+            Inventario IN = new Inventario();
+            IN.setVisible(true);
+            this.setVisible(false); 
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error al iniciar sesión", JOptionPane.ERROR_MESSAGE);
+    }
+} catch(SQLException e) {
+    System.out.println("Error al iniciar sesión: " + e.getMessage());
+}
         
     }//GEN-LAST:event_txtIniciarSesionActionPerformed
 

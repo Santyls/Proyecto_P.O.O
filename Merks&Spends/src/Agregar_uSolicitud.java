@@ -39,8 +39,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
         btnLimpiarArti1 = new javax.swing.JButton();
         txtCantidad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtNombreUsua = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtIdArticulo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -121,14 +119,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
 
         jLabel4.setText("Cantidad:");
 
-        jLabel3.setText("Id del usuario:");
-
-        txtNombreUsua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreUsuaActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("Id del artículo");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -143,26 +133,20 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
                         .addGap(83, 83, 83)
                         .addComponent(btnLimpiarArti1))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addGap(126, 126, 126)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                            .addComponent(txtNombreUsua, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdArticulo))))
                 .addContainerGap(221, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtNombreUsua, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtIdArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -303,7 +287,8 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
             String fecha = fechaActual.format(formatter);
             String hora = horaActual.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss"));
             //String estado = cbEstado.getSelectedItem().toString();
-            int idUsuario = Integer.parseInt(txtNombreUsua.getText());
+            int idUsuario = InicioSesion.id_usuario;
+            
             int idArti = Integer.parseInt(txtIdArticulo.getText());
 
             // Insertar solicitud usando el CRUD
@@ -323,10 +308,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private void btnLimpiarArti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarArti1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarArti1ActionPerformed
-
-    private void txtNombreUsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreUsuaActionPerformed
 
     private void usInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usInventarioActionPerformed
         Inventario IN = new  Inventario();
@@ -400,6 +381,10 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
             InicioSesion IS = new InicioSesion();
             IS.setVisible(true);
             this.setVisible(false);
+            InicioSesion.id_usuario = 0;
+            InicioSesion.nombre_usuario = null;
+            InicioSesion.privilegio = 0;
+            InicioSesion.id_departamento = 0;
         }
     }//GEN-LAST:event_txtCerrarActionPerformed
 
@@ -444,7 +429,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarTodosArti;
     private javax.swing.JButton btnLimpiarArti1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -465,7 +449,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JMenuItem txtCerrar;
     private javax.swing.JTextField txtIdArticulo;
-    private javax.swing.JTextField txtNombreUsua;
     private javax.swing.JMenuItem usAgregarSoli;
     private javax.swing.JMenuItem usInventario;
     // End of variables declaration//GEN-END:variables

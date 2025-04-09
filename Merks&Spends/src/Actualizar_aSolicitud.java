@@ -331,6 +331,10 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
             InicioSesion IS = new InicioSesion();
             IS.setVisible(true);
             this.setVisible(false);
+            InicioSesion.id_usuario = 0;
+            InicioSesion.nombre_usuario = null;
+            InicioSesion.privilegio = 0;
+            InicioSesion.id_departamento = 0;
         }
     }//GEN-LAST:event_txtCerrarActionPerformed
 
