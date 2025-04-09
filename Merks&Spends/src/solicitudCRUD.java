@@ -130,4 +130,16 @@ public class solicitudCRUD {
         return false;
     }
 }
+    
+    public ResultSet buscarIdSurtir(int id_solicitud) {
+    String sql = "SELECT id_articulo, cantidad FROM solicitud_articulo WHERE id_solicitud = ?";
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setInt(1, id_solicitud);
+        return ps.executeQuery();
+    } catch (SQLException e) {
+        System.out.println("Error al obtener artículos para surtir: " + e.getMessage());
+        return null;
+    }
+}
 }

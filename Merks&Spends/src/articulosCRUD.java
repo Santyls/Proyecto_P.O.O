@@ -163,6 +163,38 @@ public class articulosCRUD {
     }
     
     
+    public int obtenerExistenciaArticulo(int id_articulo) {
+    String sql = "SELECT existencia FROM articulos WHERE id_articulo = ?";
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setInt(1, id_articulo);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("existencia");
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al obtener la existencia: " + e.getMessage());
+    }
+    return -1; // Valor por defecto si hay error o no se encuentra
+}
+    
+    public boolean updateExistenciaArticulo(int id_articulo, int nueva_existencia) {
+    String sql = "UPDATE articulos SET existencia = ? WHERE id_articulo = ?";
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setInt(1, nueva_existencia);
+        ps.setInt(2, id_articulo);
+
+        int filas = ps.executeUpdate();
+        return filas > 0;
+    } catch (SQLException e) {
+        System.out.println("Error al actualizar la existencia: " + e.getMessage());
+        return false;
+    }
+}
+    
+    
     
     //----------------------
     public DefaultCategoryDataset obtenerDatosReales() throws SQLException {

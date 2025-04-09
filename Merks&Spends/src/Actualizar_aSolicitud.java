@@ -7,11 +7,13 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
 
     private UserCRUD crud;
     private solicitudCRUD crudArticulos;
+    private articulosCRUD arcrud;
     
     public Actualizar_aSolicitud() {
         initComponents();
         this.crud= new UserCRUD();
         this.crudArticulos = new solicitudCRUD();
+        this.arcrud = new articulosCRUD();
     }
 
     @SuppressWarnings("unchecked")
@@ -19,7 +21,6 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblBienvenido = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -28,7 +29,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cbEstado = new javax.swing.JComboBox<>();
         btnBuscarEstado = new javax.swing.JButton();
-        btnActualizarCambio = new javax.swing.JButton();
+        btnMostrarTodo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableArticulo = new javax.swing.JTable();
         txtSurtir = new javax.swing.JButton();
@@ -44,9 +45,6 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setText("ADMINISTRADOR");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 103, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -66,7 +64,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblBienvenido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26))
         );
@@ -80,7 +78,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 50));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -108,10 +106,10 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
             }
         });
 
-        btnActualizarCambio.setText("Mostrar todo");
-        btnActualizarCambio.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrarTodo.setText("Mostrar todo");
+        btnMostrarTodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarCambioActionPerformed(evt);
+                btnMostrarTodoActionPerformed(evt);
             }
         });
 
@@ -139,30 +137,26 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(btnBuscarEstado)
+                .addGap(99, 99, 99)
+                .addComponent(btnEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addComponent(txtSurtir)
+                .addGap(104, 104, 104))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 4, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(113, 113, 113)
-                                .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(217, 217, 217)
-                                .addComponent(btnActualizarCambio))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(btnBuscarEstado)
-                                .addGap(99, 99, 99)
-                                .addComponent(btnEditar)
-                                .addGap(47, 47, 47)
-                                .addComponent(txtSurtir)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113)
+                        .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(310, 310, 310)
+                        .addComponent(btnMostrarTodo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,20 +167,20 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(jLabel3))
                     .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBuscarEstado)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnEditar)
                         .addComponent(txtSurtir)))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnActualizarCambio)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMostrarTodo)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 580, 330));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 720, 330));
 
         jMenu3.setText("Menú");
 
@@ -238,9 +232,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,10 +296,10 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnBuscarEstadoActionPerformed
 
-    private void btnActualizarCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCambioActionPerformed
+    private void btnMostrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoActionPerformed
         // TODO add your handling code here:
         actualizarTabla();
-    }//GEN-LAST:event_btnActualizarCambioActionPerformed
+    }//GEN-LAST:event_btnMostrarTodoActionPerformed
 
     private void adUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adUsuariosActionPerformed
         Administracion_Usuarios AU = new  Administracion_Usuarios();
@@ -343,7 +335,7 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCerrarActionPerformed
 
     private void txtSurtirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSurtirActionPerformed
-        int selectedRow = tableArticulo.getSelectedRow();
+         int selectedRow = tableArticulo.getSelectedRow();
 
     if (selectedRow == -1) {
         JOptionPane.showMessageDialog(this, "Por favor, selecciona una solicitud para surtir.");
@@ -352,29 +344,45 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
 
     try {
         int id_solicitud = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 0).toString());
-        int id_articulo = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 2).toString());
-        int cantidad_solicitada = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 3).toString());
-        int existencia_actual = Integer.parseInt(tableArticulo.getValueAt(selectedRow, 5).toString());
 
-        if (existencia_actual >= cantidad_solicitada) {
-            int nueva_existencia = existencia_actual - cantidad_solicitada;
+        ResultSet rsSolicitud = crudArticulos.buscarIdSurtir(id_solicitud);
 
-            if (crudArticulos.updateExistenciaArticulo(id_articulo, nueva_existencia)) {
-                crudArticulos.updateSolicitudArticulos(id_solicitud, "Disponible para recolección");
-                JOptionPane.showMessageDialog(this, "Artículo surtido correctamente.");
+        boolean surtidoExitoso = true;
+
+        while (rsSolicitud.next()) {
+            int id_articulo = rsSolicitud.getInt("id_articulo");
+            int cantidad_solicitada = rsSolicitud.getInt("cantidad");
+
+            int existencia_actual = crudArticulos.obtenerExistenciaArticulo(id_articulo);
+
+            if (existencia_actual >= cantidad_solicitada) {
+                int nueva_existencia = existencia_actual - cantidad_solicitada;
+                boolean actualizado = crudArticulos.updateExistenciaArticulo(id_articulo, nueva_existencia);
+
+                if (!actualizado) {
+                    surtidoExitoso = false;
+                    JOptionPane.showMessageDialog(this, "Error al actualizar existencia del artículo ID: " + id_articulo);
+                    break;
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Error al actualizar la existencia del artículo.");
+                surtidoExitoso = false;
+                crudArticulos.updateSolicitudArticulos(id_solicitud, "Artículo no disponibles");
+                JOptionPane.showMessageDialog(this, "No hay suficiente existencia para surtir el artículo ID: " + id_articulo);
+                break;
             }
-        } else {
-            crudArticulos.updateSolicitudArticulos(id_solicitud, "Artículo no disponible");
-            JOptionPane.showMessageDialog(this, "No hay suficiente existencia para surtir esta solicitud.");
         }
 
-        actualizarTabla(); // Recarga la tabla si tienes un método para eso
+        if (surtidoExitoso) {
+            crudArticulos.updateSolicitudArticulos(id_solicitud, "Disponible para recolección");
+            JOptionPane.showMessageDialog(this, "Solicitud surtida correctamente.");
+        }
+
+        actualizarTabla(); // Recarga la tabla
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al intentar surtir el artículo: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Error al intentar surtir la solicitud: " + e.getMessage());
     }
+
     }//GEN-LAST:event_txtSurtirActionPerformed
 
     private void actualizarTabla() {
@@ -430,12 +438,11 @@ public class Actualizar_aSolicitud extends javax.swing.JFrame {
     private javax.swing.JMenuItem adArticulos;
     private javax.swing.JMenuItem adConsulta;
     private javax.swing.JMenuItem adUsuarios;
-    private javax.swing.JButton btnActualizarCambio;
     private javax.swing.JButton btnBuscarEstado;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnMostrarTodo;
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;

@@ -2,6 +2,9 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import java.time.LocalTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Agregar_uSolicitud extends javax.swing.JFrame {
 
@@ -34,10 +37,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnAgregarArti1 = new javax.swing.JButton();
         btnLimpiarArti1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtHora = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -120,22 +119,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Hora (hh:mm:ss):");
-
-        txtHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHoraActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Fecha (aaaa/mm/dd):");
-
-        txtFecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Cantidad:");
 
         jLabel3.setText("Id del usuario:");
@@ -160,17 +143,13 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
                         .addGap(83, 83, 83)
                         .addComponent(btnLimpiarArti1))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
+                        .addGap(124, 124, 124)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel6)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                             .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                             .addComponent(txtNombreUsua, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdArticulo))))
@@ -183,7 +162,7 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombreUsua, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtIdArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,22 +170,14 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarArti1)
                     .addComponent(btnLimpiarArti1))
-                .addGap(27, 27, 27))
+                .addGap(99, 99, 99))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 640, 250));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 640, 160));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -315,26 +286,22 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHoraActionPerformed
-
-    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaActionPerformed
-
     private void btnAgregarArti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArti1ActionPerformed
-        // TODO add your handling code here:
+     
         try {
+            LocalTime horaActual = LocalTime.now();
+            LocalDate fechaActual = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            
             int cantidad = Integer.parseInt(txtCantidad.getText());
-            String fecha = txtFecha.getText();
-            String hora = txtHora.getText();
+            String fecha = fechaActual.format(formatter);
+            String hora = horaActual.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss"));
             //String estado = cbEstado.getSelectedItem().toString();
             int idUsuario = Integer.parseInt(txtNombreUsua.getText());
             int idArti = Integer.parseInt(txtIdArticulo.getText());
@@ -479,8 +446,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -499,8 +464,6 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JTextField txtBuscarIdArticulo;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JMenuItem txtCerrar;
-    private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtIdArticulo;
     private javax.swing.JTextField txtNombreUsua;
     private javax.swing.JMenuItem usAgregarSoli;
