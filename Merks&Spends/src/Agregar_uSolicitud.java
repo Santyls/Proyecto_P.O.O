@@ -41,6 +41,7 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtIdArticulo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtBuscarIdArticulo = new javax.swing.JTextField();
@@ -121,6 +122,13 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
 
         jLabel8.setText("Id del artículo");
 
+        jButton1.setText("Mis solicitudes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -141,7 +149,9 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                             .addComponent(txtIdArticulo))))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addComponent(jButton1)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +163,8 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarArti1)
@@ -388,6 +399,33 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCerrarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String idtext = InicioSesion.nombre_usuario;
+        
+
+        //3.Busqueda, llenado de la tabla
+        try{
+ 
+            ResultSet rs= crudArticulos.buscarporNombreU(idtext);
+            DefaultTableModel modelo = (DefaultTableModel) tableArticulo.getModel();
+            modelo.setRowCount(0);
+
+            if(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("id_solicitud"),rs.getString("Usuario"),rs.getString("Articulo"),rs.getInt("cantidad"),rs.getDate("fecha_solicitud"),rs.getTime("hora"),rs.getString("estado")});
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "No se encontró ninguna solicitud con ese ID.");
+            }
+        }
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException e) {
+            System.out.println("Error al llenar la tabla: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al buscar en la base de datos.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -428,6 +466,7 @@ public class Agregar_uSolicitud extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarIdArticulo;
     private javax.swing.JButton btnBuscarTodosArti;
     private javax.swing.JButton btnLimpiarArti1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;

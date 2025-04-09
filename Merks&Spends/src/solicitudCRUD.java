@@ -142,4 +142,19 @@ public class solicitudCRUD {
         return null;
     }
 }
+    
+    public ResultSet buscarporNombreU (String nombre){
+        String sqlBuscar = "SELECT * FROM vista_solicitudes_usuario_articulo WHERE Usuario = ?";
+        
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sqlBuscar);
+            ps.setString(1,nombre);
+            return ps.executeQuery();
+        }
+        catch(SQLException e){
+            System.out.println("Error al buscar por Uusario "+ e.getMessage());
+            return null;
+        }
+    }//fin del consulta ID de las solicitudes de Articulos
+    
 }
